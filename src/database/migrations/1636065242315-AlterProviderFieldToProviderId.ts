@@ -5,8 +5,8 @@ import {
   TableForeignKey,
 } from 'typeorm';
 
-export default class AlterProviderFieldToProviderId1636065242315
-  implements MigrationInterface {
+// eslint-disable-next-line prettier/prettier
+export default class AlterProviderFieldToProviderId1636065242315 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropColumn('appointments', 'provider');
     await queryRunner.addColumn(
