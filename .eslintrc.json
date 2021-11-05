@@ -5,22 +5,64 @@
     "jest": true
   },
   "extends": [
-    "airbnb-base",
+    "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended"
+    "airbnb-base",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "plugin:import/recommended"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts'"
+      ],
+      "parserOptions": {
+        "project": [
+          "./tsconfig.json"
+        ]
+      }
+    }
   ],
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": 2018,
-    "sourceType": "module"
-  },
   "plugins": [
     "@typescript-eslint",
     "prettier"
   ],
   "rules": {
+    "no-param-reassign": [
+      2,
+      {
+        "props": false
+      }
+    ],
+    "import/no-unresolved": [
+      "error",
+      {
+        "ignore": [
+          "aws-lambda"
+        ]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-empty-function": [
+      "error",
+      {
+        "allow": [
+          "constructors"
+        ]
+      }
+    ],
+    "func-style": [
+      "error",
+      "declaration",
+      {
+        "allowArrowFunctions": true
+      }
+    ],
     "prettier/prettier": "error",
+    "indent": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "no-useless-constructor": "off",
     "no-unused-vars": "off",
     "camelcase": "off",
@@ -34,26 +76,37 @@
       "error",
       {
         "selector": "interface",
-        "prefix": [
-          "I"
-        ],
         "format": [
           "PascalCase"
         ]
       }
     ],
     "class-methods-use-this": "off",
+    "no-shadow": "off",
+    "@typescript-eslint/no-shadow": [
+      "error"
+    ],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "ts": "never"
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
       }
     ]
   },
   "settings": {
     "import/resolver": {
-      "typescript": {}
+      "node": {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
     }
   }
 }
