@@ -37,10 +37,10 @@
       }
     ],
     "import/no-unresolved": [
-      "error",
+      2,
       {
         "ignore": [
-          "aws-lambda"
+          "@"
         ]
       }
     ],
@@ -60,7 +60,7 @@
         "allowArrowFunctions": true
       }
     ],
-    "prettier/prettier": "error",
+    "prettier/prettier": 0,
     "indent": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-useless-constructor": "off",

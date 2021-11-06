@@ -1,7 +1,5 @@
-.idea/
-.vscode/
-/*.js
 node_modules/
-dist/
 tmp/*
+.env
 !tmp/.gitkeep
+coverage
