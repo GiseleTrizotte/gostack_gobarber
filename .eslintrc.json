@@ -5,64 +5,22 @@
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
     "airbnb-base",
-    "plugin:import/typescript",
-    "plugin:prettier/recommended",
-    "plugin:import/recommended"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts'"
-      ],
-      "parserOptions": {
-        "project": [
-          "./tsconfig.json"
-        ]
-      }
-    }
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
   "plugins": [
     "@typescript-eslint",
     "prettier"
   ],
   "rules": {
-    "no-param-reassign": [
-      2,
-      {
-        "props": false
-      }
-    ],
-    "import/no-unresolved": [
-      2,
-      {
-        "ignore": [
-          "@"
-        ]
-      }
-    ],
-    "import/prefer-default-export": "off",
-    "no-empty-function": [
-      "error",
-      {
-        "allow": [
-          "constructors"
-        ]
-      }
-    ],
-    "func-style": [
-      "error",
-      "declaration",
-      {
-        "allowArrowFunctions": true
-      }
-    ],
-    "prettier/prettier": 0,
-    "indent": "off",
-    "@typescript-eslint/no-explicit-any": "off",
+    "prettier/prettier": "error",
     "no-useless-constructor": "off",
     "no-unused-vars": "off",
     "camelcase": "off",
@@ -76,37 +34,26 @@
       "error",
       {
         "selector": "interface",
+        "prefix": [
+          "I"
+        ],
         "format": [
           "PascalCase"
         ]
       }
     ],
     "class-methods-use-this": "off",
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": [
-      "error"
-    ],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
+        "ts": "never"
       }
     ]
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
+      "typescript": {}
     }
   }
 }
