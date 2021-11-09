@@ -10,8 +10,6 @@ export default class AppointmentsController {
 
     const parsedDate = parseISO(date);
 
-    // Carrega o service, valida se possui alguma depencia, e valida se no container tem alguma
-    // depencia cadastrada com o nome que usamos no service
     const createAppointment = container.resolve(CreateAppointmentService);
 
     const appointment = await createAppointment.execute({
