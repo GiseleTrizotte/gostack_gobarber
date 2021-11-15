@@ -1,39 +1,42 @@
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import ListProviderAppointmentsService from './ListProviderAppointmentsService';
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
-// let fakeCacheProvider: FakeCacheProvider;
+let fakeCacheProvider: FakeCacheProvider;
 let listProviderAppointments: ListProviderAppointmentsService;
 
 describe('ListProviderAppointments', () => {
-  beforeEach(() => {
-    fakeAppointmentsRepository = new FakeAppointmentsRepository();
-    // fakeCacheProvider = new FakeCacheProvider();
-    listProviderAppointments = new ListProviderAppointmentsService(
-      fakeAppointmentsRepository,
-    );
-  });
+	beforeEach(() => {
+		fakeAppointmentsRepository = new FakeAppointmentsRepository();
+		fakeCacheProvider = new FakeCacheProvider();
 
-  it('should be able to list the day availability from provider', async () => {
-    const appointment1 = await fakeAppointmentsRepository.create({
-      provider_id: 'provider',
-      user_id: 'user',
-      date: new Date(2021, 4, 20, 14, 0, 0),
-    });
+		listProviderAppointments = new ListProviderAppointmentsService(
+			fakeAppointmentsRepository,
+			fakeCacheProvider,
+		);
+	});
 
-    const appointment2 = await fakeAppointmentsRepository.create({
-      provider_id: 'provider',
-      user_id: 'user',
-      date: new Date(2021, 4, 20, 15, 0, 0),
-    });
+	it('should be able to list the day availability from provider', async () => {
+		const appointment1 = await fakeAppointmentsRepository.create({
+			provider_id: 'provider',
+			user_id: 'user',
+			date: new Date(2021, 4, 20, 14, 0, 0),
+		});
 
-    const appointments = await listProviderAppointments.execute({
-      provider_id: 'provider',
-      year: 2021,
-      month: 5,
-      day: 20,
-    });
+		const appointment2 = await fakeAppointmentsRepository.create({
+			provider_id: 'provider',
+			user_id: 'user',
+			date: new Date(2021, 4, 20, 15, 0, 0),
+		});
 
-    expect(appointments).toEqual([appointment1, appointment2]);
-  });
+		const appointments = await listProviderAppointments.execute({
+			provider_id: 'provider',
+			year: 2021,
+			month: 5,
+			day: 20,
+		});
+
+		expect(appointments).toEqual([appointment1, appointment2]);
+	});
 });
