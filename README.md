@@ -11,7 +11,7 @@
 </p>
 
 <h2>
-<strong>Backend</strong> da aplicação GoBarber.
+<strong>Backend</strong> da aplicação GoBarber
 </h2>
 
 ## 🚀 Sobre
