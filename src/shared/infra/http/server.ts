@@ -5,13 +5,13 @@ import express, { Request, Response, NextFunction } from 'express';
 import { errors } from 'celebrate';
 import 'express-async-errors';
 
-import uploadConfig from '@config/upload';
-import AppError from '@shared/errors/AppError';
+import uploadConfig from '../../../config/upload';
+import AppError from '../../../shared/errors/AppError';
 import rateLimiter from './middlewares/rateLimiter';
 import routes from './routes';
 
-import '@shared/infra/typeorm';
-import '@shared/container';
+import '../../../shared/infra/typeorm';
+import '../../../shared/container';
 
 const app = express();
 

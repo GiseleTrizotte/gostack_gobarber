@@ -1,12 +1,12 @@
 import startOfHour from 'date-fns/startOfHour';
 import { inject, injectable } from 'tsyringe';
 
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import Appointment from '../infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 import { format, getHours, isBefore } from 'date-fns';
-import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import INotificationsRepository from '../../notifications/repositories/INotificationsRepository';
+import ICacheProvider from '../../../shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface RequestCreateAppointment {
 	provider_id: string;
