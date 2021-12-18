@@ -30,24 +30,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Typescript](https://www.typescriptlang.org/)
 - [NodeJS](https://nodejs.org/) | [Express](https://expressjs.com/pt-br/)
 - [JWT](https://jwt.io/) | [BCrycptjs](https://github.com/dcodeIO/bcrypt.js#readme)
+- [Yarn](https://yarnpkg.com/) | [PostgreSQL](https://www.postgresql.org/)
+- [MongoDB](https://www.mongodb.com/) | [Redis](https://redis.io/)
 
 \* Para mais detalhes, veja o <kbd>[package.json](./package.json)</kbd>
 
 ## :zap: Rodando o projeto
-
-### Docker
-
-É preciso ter o [Docker](https://www.docker.com/) instaldo em sua máquina. Feito a instalação, rodar os seguintes comandos:
-
-```bash
-$ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
-
-# Após executar os comandos acima, verificar se as imagens estão rodando no terminal:
-$ docker ps
-
-# Caso as imagens estejam paradas/não aparecem no terminal, executar:
-$ docker start database
-```
 
 ### Backend
 
@@ -68,6 +56,35 @@ Se desejar, pode rodar os testes do projeto, usando o seguinte comando:
 
 ```
 $ yarn test
+```
+
+### DBeaver
+
+È preciso ter o [DBeaver](https://dbeaver.com/) instalado em sua máquina, para gerenciamento de banco de dados postgreSQL
+
+### MongoDB Compass
+
+È preciso ter o [MongoDB_Compass](https://www.mongodb.com/try/download/compass) instalado em sua máquina, MongoDB Compass é uma interface visual para gerenciar os dados do mongo pois o DBeaver não suporta o MongoDB
+
+### Docker
+
+É preciso ter o [Docker](https://www.docker.com/) instaldo em sua máquina. Feito a instalação, rodar os seguintes comandos:
+
+```bash
+# Image do postgres com docker
+$ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+
+# Iniciar o container
+$ docker start database
+
+# Executar as migrations:
+$ yarn typeorm migration:run
+
+# Image do mongoDB com docker
+$ docker run --name mongodb -p 27017:27017 -d -t mongo
+
+# Iniciar o container
+$ docker start mongodb
 ```
 
 ## :notebook: Endpoints
