@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
-import AppError from '@shared/errors/AppError';
+import AppError from '../../../shared/errors/AppError';
 import User from '../infra/typeorm/entities/User';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
-import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import ICacheProvider from '../../../shared/container/providers/CacheProvider/models/ICacheProvider';
 
 interface RequestCreateUser {
 	name: string;

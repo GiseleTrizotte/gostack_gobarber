@@ -1,30 +1,29 @@
-import UserToken from "@modules/users/infra/typeorm/entities/UserToken";
-import { uuid } from "uuidv4";
-import IUserTokensRepository from "../IUserTokensRepository";
-
+import { uuid } from 'uuidv4';
+import UserToken from '../../infra/typeorm/entities/UserToken';
+import IUserTokensRepository from '../IUserTokensRepository';
 
 class FakeUserTokensRepository implements IUserTokensRepository {
-  private userTokensArray: UserToken[] = [];
+	private userTokensArray: UserToken[] = [];
 
-  public async generate(user_id: string): Promise<UserToken> {
-    const userToken = new UserToken();
+	public async generate(user_id: string): Promise<UserToken> {
+		const userToken = new UserToken();
 
-    Object.assign(userToken, {
-      id: uuid,
-      token: uuid,
-      user_id,
-      created_at: new Date(),
-      updated_at: new Date
-    });
+		Object.assign(userToken, {
+			id: uuid,
+			token: uuid,
+			user_id,
+			created_at: new Date(),
+			updated_at: new Date(),
+		});
 
-    this.userTokensArray.push(userToken);
+		this.userTokensArray.push(userToken);
 
-    return userToken;
-  }
+		return userToken;
+	}
 
-  public async findByToken(token: string): Promise<UserToken | undefined> {
-    return this.userTokensArray.find(findToken => findToken.token === token);
-  }
+	public async findByToken(token: string): Promise<UserToken | undefined> {
+		return this.userTokensArray.find(findToken => findToken.token === token);
+	}
 }
 
 export default FakeUserTokensRepository;

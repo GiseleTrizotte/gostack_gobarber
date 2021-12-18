@@ -1,6 +1,6 @@
 import { getMongoRepository, MongoRepository } from 'typeorm';
-import ICreateNotifications from '@modules/notifications/dtos/ICreateNotifications';
-import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+import ICreateNotifications from '../../../dtos/ICreateNotifications';
+import INotificationsRepository from '../../../repositories/INotificationsRepository';
 import Notification from '../schemas/Notification';
 
 export default class NotificationsRepository
