@@ -11,7 +11,7 @@ import AppError from './errors/AppError';
 const app = express();
 
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.directory));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
 // Tratativa de erros depois das rotas
