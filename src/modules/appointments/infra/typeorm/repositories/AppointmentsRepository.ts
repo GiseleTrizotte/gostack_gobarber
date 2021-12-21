@@ -12,13 +12,15 @@ class AppointmentsRepository implements IAppointmentsRepository {
 		this.ormRepository = getRepository(Appointment);
 	}
 
-	public async findByDate(date: Date): Promise<Appointment | undefined> {
-		const findAppointments = await this.ormRepository.findOne({
-			where: { date },
+	public async findByDate(
+		date: Date,
+		provider_id: string,
+	): Promise<Appointment | undefined> {
+		const findAppointment = await this.ormRepository.findOne({
+			where: { date, provider_id },
 		});
 
-		console.log(findAppointments);
-		return findAppointments;
+		return findAppointment;
 	}
 
 	public async findAllInMonthFromProvider({
@@ -28,7 +30,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
 	}: IFindAllInMonthFromProviderDTO): Promise<Appointment[]> {
 		const parsedMonth = String(month).padStart(2, '0');
 
-		return await this.ormRepository.find({
+		const appointments = await this.ormRepository.find({
 			where: {
 				provider_id,
 				date: Raw(
@@ -37,6 +39,8 @@ class AppointmentsRepository implements IAppointmentsRepository {
 				),
 			},
 		});
+
+		return appointments;
 	}
 
 	public async findAllInDayFromProvider({
@@ -45,11 +49,10 @@ class AppointmentsRepository implements IAppointmentsRepository {
 		month,
 		year,
 	}: IFindAllInDayFromProviderDTO): Promise<Appointment[]> {
+		const parsedMonth = String(month).padStart(2, '0');
 		const parsedDay = String(day).padStart(2, '0');
 
-		const parsedMonth = String(month).padStart(2, '0');
-
-		return await this.ormRepository.find({
+		const appointments = await this.ormRepository.find({
 			where: {
 				provider_id,
 				date: Raw(
@@ -57,13 +60,16 @@ class AppointmentsRepository implements IAppointmentsRepository {
 						`to_char(${dateFieldName}, 'DD-MM-YYYY') = '${parsedDay}-${parsedMonth}-${year}'`,
 				),
 			},
+			relations: ['user'],
 		});
+
+		return appointments;
 	}
 
 	public async create({
 		provider_id,
-		date,
 		user_id,
+		date,
 	}: ICreateAppointmentDTO): Promise<Appointment> {
 		const appointment = this.ormRepository.create({
 			provider_id,
