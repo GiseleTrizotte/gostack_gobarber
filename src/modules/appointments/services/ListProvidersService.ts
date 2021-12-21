@@ -1,7 +1,7 @@
+import { inject, injectable } from 'tsyringe';
 import User from '../../users/infra/typeorm/entities/User';
 import IUsersRepository from '../../users/repositories/IUsersRepository';
 import ICacheProvider from '../../../shared/container/providers/CacheProvider/models/ICacheProvider';
-import { inject, injectable } from 'tsyringe';
 
 interface IRequest {
 	user_id: string;
@@ -10,7 +10,7 @@ interface IRequest {
 @injectable()
 export default class ListProviderService {
 	constructor(
-		@inject('UserRepository')
+		@inject('UsersRepository')
 		private userRepository: IUsersRepository,
 
 		@inject('CacheProvider')

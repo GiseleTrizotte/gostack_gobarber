@@ -10,7 +10,7 @@ interface IRequest {
 @injectable()
 export default class ShowProfileService {
 	constructor(
-		@inject('UserRepository')
+		@inject('UsersRepository')
 		private userRepository: IUsersRepository,
 	) {}
 
