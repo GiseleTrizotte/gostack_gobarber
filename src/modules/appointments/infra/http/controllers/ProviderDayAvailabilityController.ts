@@ -1,6 +1,6 @@
-import ListProviderDayAvailabilityService from '../../../services/ListProviderDayAvailabilityService';
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
+import ListProviderDayAvailabilityService from '../../../services/ListProviderDayAvailabilityService';
 
 export default class ProviderDayAvailabilityController {
 	public async index(request: Request, response: Response): Promise<Response> {

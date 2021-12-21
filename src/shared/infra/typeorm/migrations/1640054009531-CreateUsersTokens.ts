@@ -1,9 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CreateUserTokens1636312010666
+export default class CreateUsersTokens1640054009531
 	implements MigrationInterface
 {
 	public async up(queryRunner: QueryRunner): Promise<void> {
+		await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp" `);
+
 		await queryRunner.createTable(
 			new Table({
 				name: 'user_tokens',
@@ -18,6 +20,7 @@ export default class CreateUserTokens1636312010666
 					{
 						name: 'token',
 						type: 'uuid',
+						isPrimary: true,
 						generationStrategy: 'uuid',
 						default: 'uuid_generate_v4()',
 					},
@@ -39,11 +42,11 @@ export default class CreateUserTokens1636312010666
 				foreignKeys: [
 					{
 						name: 'TokenUser',
-						referencedTableName: 'users',
-						referencedColumnNames: ['id'],
 						columnNames: ['user_id'],
-						onDelete: 'CASCADE',
+						referencedColumnNames: ['id'],
+						referencedTableName: 'users',
 						onUpdate: 'CASCADE',
+						onDelete: 'CASCADE',
 					},
 				],
 			}),

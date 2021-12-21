@@ -1,54 +1,65 @@
-import { getHours } from "date-fns";
-import isAfter from "date-fns/isAfter";
-import { inject, injectable } from "tsyringe";
-import IAppointmentsRepository from "../repositories/IAppointmentsRepository";
+import { getHours } from 'date-fns';
+import isAfter from 'date-fns/isAfter';
+import { inject, injectable } from 'tsyringe';
+import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
-  provider_id: string;
-  day: number;
-  month: number;
-  year: number;
+	provider_id: string;
+	day: number;
+	year: number;
+	month: number;
 }
 
 type IResponse = Array<{
-  hour: number;
-  available: boolean;
+	hour: number;
+	available: boolean;
 }>;
 
 @injectable()
-export default class ListProviderDayAvailabilityService {
-  constructor(
-    @inject('AppointmentsRepository')
-    private appointmentsRepository: IAppointmentsRepository
-  ) { }
+class ListProviderDayAvailabilityService {
+	constructor(
+		@inject('AppointmentsRepository')
+		private appointmentsRepositiry: IAppointmentsRepository,
+	) {}
 
-  public async execute({ provider_id, year, month, day }: IRequest): Promise<IResponse> {
-    const appointments = await this.appointmentsRepository.findAllInDayFromProvider({
-      provider_id,
-      year,
-      month,
-      day
-    });
+	public async execute({
+		provider_id,
+		day,
+		year,
+		month,
+	}: IRequest): Promise<IResponse> {
+		const appointments =
+			await this.appointmentsRepositiry.findAllInDayFromProvider({
+				provider_id,
+				day,
+				year,
+				month,
+			});
 
-    const hourStart = 8;
+		const hourStart = 8;
 
-    const eachHourArray = Array.from(
-      { length: 10 },
-      (_, index) => index + hourStart,
-    );
+		const eachHourArray = Array.from(
+			{ length: 10 },
+			(_, index) => index + hourStart,
+		);
 
-    return eachHourArray.map(hour => {
-      const hasAppointmentInHour = appointments.find(appointment =>
-        getHours(appointment.date) === hour,
-      );
+		const currentDate = new Date(Date.now());
 
-      const currentDate = new Date(Date.now());
-      const compareDate = new Date(year, month - 1, day, hour);
+		const availability = eachHourArray.map(hour => {
+			const hasAppointmentInHour = appointments.find(
+				appointment => getHours(appointment.date) === hour,
+			);
 
-      return {
-        hour,
-        available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
-      }
-    });
-  }
+			const compareDate = new Date(year, month - 1, day, hour);
+
+			return {
+				hour,
+				available: !hasAppointmentInHour && isAfter(compareDate, currentDate),
+			};
+		});
+
+		return availability;
+	}
 }
+
+export default ListProviderDayAvailabilityService;
