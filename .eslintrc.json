@@ -1,112 +1,56 @@
 {
   "env": {
-    "es2020": true,
+    "es6": true,
     "node": true,
     "jest": true
   },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
     "airbnb-base",
-    "plugin:import/typescript",
-    "plugin:prettier/recommended",
-    "plugin:import/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts'"
-      ],
-      "parserOptions": {
-        "project": [
-          "./tsconfig.json"
-        ]
-      }
-    }
-  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
   "plugins": [
     "@typescript-eslint",
     "prettier"
   ],
   "rules": {
-    "no-param-reassign": [
-      2,
-      {
-        "props": false
-      }
-    ],
-    "import/no-unresolved": [
-      "error",
-      {
-        "ignore": [
-          "aws-lambda"
-        ]
-      }
-    ],
-    "import/prefer-default-export": "off",
-    "no-empty-function": [
-      "error",
-      {
-        "allow": [
-          "constructors"
-        ]
-      }
-    ],
-    "func-style": [
-      "error",
-      "declaration",
-      {
-        "allowArrowFunctions": true
-      }
-    ],
     "prettier/prettier": "error",
-    "indent": "off",
-    "@typescript-eslint/no-explicit-any": "off",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/camelcase": "off",
     "no-useless-constructor": "off",
-    "no-unused-vars": "off",
-    "camelcase": "off",
     "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "@typescript-eslint/naming-convention": [
       "error",
       {
-        "selector": "interface",
-        "format": [
-          "PascalCase"
-        ]
+        "argsIgnorePattern": "_"
       }
     ],
-    "class-methods-use-this": "off",
-    "no-shadow": "off",
-    "@typescript-eslint/no-shadow": [
-      "error"
+    "@typescript-eslint/interface-name-prefix": [
+      "error",
+      {
+        "prefixWithI": "always"
+      }
     ],
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "js": "never",
-        "jsx": "never",
-        "ts": "never",
-        "tsx": "never"
+        "ts": "never"
       }
     ]
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
+      "typescript": {}
     }
   }
 }

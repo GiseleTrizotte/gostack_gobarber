@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2017",
-    "module": "commonJs",
+    "target": "es5",
+    "module": "commonjs",
     "outDir": "./dist",
     "rootDir": "./src",
     "strict": true,
@@ -19,28 +19,9 @@
         "shared/*"
       ]
     },
-    "removeComments": true,
-    "emitDecoratorMetadata": true,
-    "strict": true,
-    "strictPropertyInitialization": false,
-    "baseUrl": "./src",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "types": [
-      "node",
-    ],
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "inlineSourceMap": true,
-    "skipLibCheck": true,
+    "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "./dist"
-  ],
+  }
 }
