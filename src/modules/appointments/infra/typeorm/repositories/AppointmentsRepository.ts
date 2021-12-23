@@ -16,6 +16,7 @@ class AppointmentsRepository implements IAppointmentsRepository {
 		return this.ormRepository.find();
 	}
 
+
 	public async findByDate(
 		date: Date,
 		provider_id: string,
