@@ -7,6 +7,7 @@
   <a href="#collision-funcionalidades">Funcionalidades</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#zap-rodando-o-projeto">Rodando o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+   <a href="#mag-rotas">Rotas</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#zap-rodando-o-projeto">Endpoints</a>
 </p>
 
@@ -90,6 +91,8 @@ Se desejar, pode rodar os testes do projeto, usando o seguinte comando:
 $ yarn test
 ```
 
+## :mag: Rotas
+teste
 
 
 ## :notebook: Endpoints
