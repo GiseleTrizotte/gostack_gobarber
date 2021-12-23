@@ -92,7 +92,175 @@ $ yarn test
 ```
 
 ## :mag: Rotas
-teste
+
+### Session:
+
+Cria um token para o usuário realizar as requisições da API, é necessário que o usuário já um tenha cadastro.
+
+:exclamation: Para acessar qualquer rota, é necessário estar logado.
+
+```json
+{
+  "email": "jhon@teste.com",
+  "password": "123456"
+}
+
+```
+
+Resposta:
+
+```json
+{
+  "user": {
+  "id": "b0c5a535-e681-47cb-9adc-6e36cf3d01c6",
+  "name": "Jhon doe teste",
+  "email": "jhon@teste.com",
+  "avatar": "cf9433a985b908ba3070-ppp.png",
+  "created_at": "2021-12-23T20:45:40.134Z",
+  "updated_at": "2021-12-23T20:54:46.508Z",
+  "avatar_url": "http://localhost:3333/files/cf9433a985b908ba3070-ppp.png"
+    },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDAyODczMjcsImV4cCI6MTY0MDM3MzcyNywic3ViIjoiYjBjNWE1MzUtZTY4MS00N2NiLTlhZGMtNmUzNmNmM2QwMWM2In0.cCDcnWmkctTZylHGKkUjtIvcPcQ4IuDfppeq4VkWj5U"
+}
+
+```
+
+--------------------------------------------------
+
+### Users:
+
+#### *Create User*
+
+```
+POST /users
+```
+Rota responsável por realizar o cadastro de um novo usuário
+
+```json
+{
+  "name": "Jhon doe teste",
+  "email": "jhon@teste.com",
+  "password": "123456"
+}
+
+```
+Resposta:
+
+```json
+{
+  "name": "jhon doe teste",
+  "email": "jhon@teste.com",
+  "id": "e864fc87-e135-47d3-8d8c-2298e164423d",
+  "created_at": "2021-12-23T22:16:33.631Z",
+  "updated_at": "2021-12-23T22:16:33.631Z",
+  "avatar_url": null
+}
+
+```
+-----------------------------------
+
+#### *Show profile*
+
+```
+GET /profile
+```
+Lista as informações do usuário logado.
+
+Resposta:
+
+```json
+{
+  "id": "b0c5a535-e681-47cb-9adc-6e36cf3d01c6",
+  "name": "Jhon doe teste",
+  "email": "jhon@teste.com",
+  "avatar": "cf9433a985b908ba3070-ppp.png",
+  "created_at": "2021-12-23T20:45:40.134Z",
+  "updated_at": "2021-12-23T20:54:46.508Z",
+  "avatar_url": "http://localhost:3333/files/cf9433a985b908ba3070-ppp.png"
+}
+
+```
+-----------------------------------
+
+#### *Update avatar*
+
+```
+PATCH /users/avatar
+```
+Atualiza o avatar do usuário.
+
+
+Resposta:
+
+```json
+{
+    "id": "b0c5a535-e681-47cb-9adc-6e36cf3d01c6",
+    "name": "Jhon doe teste",
+    "email": "jhon@teste.com",
+    "avatar": "b08eb58dabebbc970ff1-ppp.png",
+    "created_at": "2021-12-23T20:45:40.134Z",
+    "updated_at": "2021-12-23T22:46:37.555Z",
+    "avatar_url": "http://localhost:3333/files/b08eb58dabebbc970ff1-ppp.png"
+}
+
+```
+-----------------------------------
+
+#### *Update profile*
+
+```
+PUT /profile
+```
+Atualiza as informações do cadastro do usuário.
+
+```json
+{
+	"name": "Jhon doe teste",
+	"email": "jhon@teste.com",
+	"old_password": "123456",
+	"password": "1234",
+	"password_confirmation": "1234"
+}
+
+```
+Resposta:
+
+```json
+{
+    "id": "b0c5a535-e681-47cb-9adc-6e36cf3d01c6",
+    "name": "Jhon doe teste",
+    "email": "jhon@teste.com",
+    "avatar": "b08eb58dabebbc970ff1-ppp.png",
+    "created_at": "2021-12-23T20:45:40.134Z",
+    "updated_at": "2021-12-23T22:49:17.849Z",
+    "avatar_url": "http://localhost:3333/files/b08eb58dabebbc970ff1-ppp.png"
+}
+
+```
+-----------------------------------
+
+#### *Forgot password*
+
+```
+POST /password/forgot
+```
+Envia email ao usuário com o token para realizar a troca de senha.
+
+```json
+{
+	"email": "jhon@teste.com" 
+}
+
+```
+
+-----------------------------------
+
+
+
+
+
+
+
 
 
 ## :notebook: Endpoints
