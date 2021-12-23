@@ -18,6 +18,12 @@
 
 Esse projeto foi desenvolvido durante o Bootcamp da Rocketseat. Trata-se de uma api para uma barbearia ficticia, a GoBarber, o backend foi realizado com (NodeJs).
 
+Foi utilizado 3 bancos de dados diferentes por propósitos educacionais.
+
+- PostgresSQL ( Banco relacional )
+- MongoDB ( Banco NoSQL )
+- Redis ( Armazenamento de cache, filas )
+
 ## :collision: Funcionalidades
 
 - Criar e gerenciar horários;
@@ -29,7 +35,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [Typescript](https://www.typescriptlang.org/)
 - [NodeJS](https://nodejs.org/) | [Express](https://expressjs.com/pt-br/)
-- [JWT](https://jwt.io/) | [BCrycptjs](https://github.com/dcodeIO/bcrypt.js#readme)
+- [JWT](https://jwt.io/) | [BCrypt](https://github.com/dcodeIO/bcrypt.js#readme)
 - [Yarn](https://yarnpkg.com/) | [PostgreSQL](https://www.postgresql.org/)
 - [MongoDB](https://www.mongodb.com/) | [Redis](https://redis.io/)
 
@@ -37,26 +43,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## :zap: Rodando o projeto
 
-### Backend
-
-```bash
-# Clone este repositório
-$ git clone https://github.com/GiseleTrizotte/gostack_gobarber.git
-
-# Entrar na raiz do projeto e rodar o comando:
-$ yarn install
-
-# Ainda na raiz do projeto, rodar o comando:
-$ yarn start
-```
-
-Feito isso, acessar o endereço http://localhost:3333
-
-Se desejar, pode rodar os testes do projeto, usando o seguinte comando:
-
-```
-$ yarn test
-```
 
 ### DBeaver
 
@@ -68,24 +54,43 @@ $ yarn test
 
 ### Docker
 
-É preciso ter o [Docker](https://www.docker.com/) instaldo em sua máquina. Feito a instalação, rodar os seguintes comandos:
+É preciso ter o [Docker](https://www.docker.com/) instaldo em sua máquina. 
 
 ```bash
+# Clone este repositório
+$ git clone https://github.com/GiseleTrizotte/gostack_gobarber.git
+
 # Image do postgres com docker
 $ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
-
-# Iniciar o container
 $ docker start database
+
+# Image do mongoDB com docker
+$ docker run --name mongodb -p 27017:27017 -d -t mongo
+$ docker start mongodb
+
+# Image do Redis com docker
+$ docker run --name redis -p 6379:6379 -d -t redis:alpine
+$ docker start redis
+
+# Entrar na raiz do projeto e rodar o comando:
+$ yarn install
 
 # Executar as migrations:
 $ yarn typeorm migration:run
 
-# Image do mongoDB com docker
-$ docker run --name mongodb -p 27017:27017 -d -t mongo
-
-# Iniciar o container
-$ docker start mongodb
+# Ainda na raiz do projeto, rodar o comando:
+$ yarn dev:server
 ```
+
+Feito isso, acessar o endereço http://localhost:3333 através do postman ou insomnia.
+
+Se desejar, pode rodar os testes do projeto, usando o seguinte comando:
+
+```
+$ yarn test
+```
+
+
 
 ## :notebook: Endpoints
 
