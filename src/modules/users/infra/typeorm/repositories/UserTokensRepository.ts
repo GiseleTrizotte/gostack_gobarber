@@ -18,9 +18,12 @@ class UserTokenRepository implements IUserTokensRepository {
 	}
 
 	public async generate(user_id: string): Promise<UserToken> {
+		console.log('entrou no repository userToken');
 		const userToken = this.ormRepository.create({
 			user_id,
 		});
+
+		console.log(userToken);
 
 		await this.ormRepository.save(userToken);
 
