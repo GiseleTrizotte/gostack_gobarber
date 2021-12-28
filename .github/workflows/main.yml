@@ -13,7 +13,7 @@ jobs:
 
 # Instalação do node
       - name: Setup Node.js environment
-        uses: actions/setup-node@v1.4.2
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: 16.x
           
